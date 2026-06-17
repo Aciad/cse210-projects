@@ -9,9 +9,10 @@ class Program
     }
     static void Main(string[] args)
     {
+
         List<int> myHistory = [50, 50];
         int myBalance = 100;
-
+        
         ProcessDeposit(myHistory, ref myBalance);
 
         Console.WriteLine($"New balance: {myBalance}");
