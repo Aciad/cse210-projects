@@ -10,7 +10,7 @@ class Program
         myActivities.Add( new Listing());
         myActivities.Add( new Breathing());
         myActivities.Add( new Reflection());
-        myActivities.Add( new Activity());
+        myActivities.Add( new BodyScan());
         Menu menu = new Menu(myActivities);
         menu.Run();
 
