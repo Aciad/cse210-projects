@@ -1,0 +1,6 @@
+Type|Title|Description|Points|Completed|CurrentCount|MaxCount|BonusPoints
+Points|150
+PersistentGoal|Attend the Temple|I will attent the temple|100
+SingleGoal|Visit Grandparents|I will visit my grandparents|100|False
+SingleGoal|Submit this asignment|I will submit this assignment|500|False
+RepeatedGoal|Beat my Roommate|I will beat my roommate with a large hammer|50|False|1|8|350
