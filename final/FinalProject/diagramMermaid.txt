@@ -1,0 +1,74 @@
+classDiagram
+    class Menu {
+        +StartMenu() : Void
+        +LoadScenario() : Void
+    }
+    class Grid{
+        -_contents : List~Object~
+        -_contentLocation : Dictionary~Object, int[]~
+        -_width : int
+        -_height : int
+        +GetContent() List~Object~
+        +GetObjectLocation(ObjectName)
+    }
+    Grid <|-- Map
+    class Map {
+        -_name : string
+        +GetName() string
+    }
+    class Turn {
+        -_turnOrder : List~Character~
+        -_turnCount : int
+        +TakeTurn() Void
+    }
+    class Object {
+        -_name : string
+        -_description : string
+        -_coordinates : int[]
+        +GetName() string
+        +GetDescription() string
+        +GetValue() int
+        +GetCoordinates() int[]
+    }
+    Object <|-- Character
+    Object <|-- Item
+    class Character {
+        -_HealthPoints : int
+        -_inventory : List~Item~
+        -_Held : Item
+        +Move() Virtual Void
+        +Attack(Character) Virtual Void
+        +PickUp() Virtual Void
+    }
+    Character <|-- Player
+    Character <|-- Monster
+    class Player {
+        +UseHeld() Void
+        +SetHeld() Void
+        +Action() Void
+    }
+    class Monster {
+        +Planner()
+    }
+    Monster <|-- Skeleton
+    Monster<|-- Zombie
+    class Skeleton {
+        +Move() Void
+        +Attak() Void
+    }
+    class Zombie {
+        +Move() Void
+        +Attak() Void
+    }
+    class Item {
+        -_weight : int
+        -_Value : int
+    }
+    Item <|-- Weapon
+    Item <|-- Consumable
+    class Weapon {
+        -_damage : int
+    }
+    class Consumable {
+        -_restoreValue : int
+    }
