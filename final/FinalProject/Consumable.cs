@@ -4,6 +4,7 @@ abstract class Consumable : Item
 
     public override void UseItem()
     {
-        
+        _holder.IncreaseHealth(_restoreValue);
+        _holder.RemoveFromInventory(this);
     }
 }

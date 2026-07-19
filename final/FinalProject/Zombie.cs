@@ -4,9 +4,9 @@ class Zombie : Monster
     {
         _token = "Z";
         _name = "Zombie";
-        _healthPoints = 2;
+        _healthPoints = 15;
         _range = 1;
-        _damage = 5;
+        _damage = 3;
         _description = "A Fearsome Zombie";
         
     }

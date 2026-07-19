@@ -61,10 +61,15 @@ class Menu
         Zombie zombie1 = new Zombie();
         gameMap.AddContent(zombie1, [4, 3], gameMap);
         turnKeeper.AddCharacter(zombie1);
+        Zombie zombie2 = new Zombie();
+        gameMap.AddContent(zombie2, [20, 5], gameMap);
+        turnKeeper.AddCharacter(zombie2);
         Sword sword = new Sword();
         gameMap.AddContent(sword, [2, 7], gameMap);
         Bow bow = new Bow();
-        gameMap.AddContent(bow, [3, 8], gameMap);
+        gameMap.AddContent(bow, [0, 7], gameMap);
+        HealthPotion healthPotion = new HealthPotion();
+        gameMap.AddContent(healthPotion, [7, 5], gameMap);
         turnKeeper.GameLoop(player);
     }
 

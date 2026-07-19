@@ -70,6 +70,10 @@ abstract class Character : GameObject
     {
         return _healthPoints;
     }
+    public void IncreaseHealth(int ammount)
+    {
+        _healthPoints += ammount;
+    }
     public virtual void Attack(Character target)
     {
         
@@ -85,5 +89,9 @@ abstract class Character : GameObject
         {
             _inventory.AddRange(local);
         }
+    }
+    public void RemoveFromInventory(Item item)
+    {
+        _inventory.Remove(item);
     }
 }
