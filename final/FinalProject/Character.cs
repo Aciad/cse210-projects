@@ -7,6 +7,7 @@ abstract class Character : GameObject
     //constructor
     public Character() : base()
     {
+        _inventory = new();
     }
     //functionality
     public void TakeDamage(int damage)
@@ -80,6 +81,9 @@ abstract class Character : GameObject
         {
             _map.RemoveObject(item);
         }
-        _inventory = local;
+        if (local.Count > 0)
+        {
+            _inventory.AddRange(local);
+        }
     }
 }

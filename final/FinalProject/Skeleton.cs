@@ -7,6 +7,7 @@ class Skeleton : Monster
         _healthPoints = 5;
         _range = 1;
         _damage = 2;
+        _description = "A Spooky Scary Skeleton";
         
     }
 }

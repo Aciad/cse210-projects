@@ -64,7 +64,7 @@ class Menu
         Sword sword = new Sword();
         gameMap.AddContent(sword, [2, 7], gameMap);
         Bow bow = new Bow();
-        gameMap.AddContent(bow, [3, 6], gameMap);
+        gameMap.AddContent(bow, [3, 8], gameMap);
         turnKeeper.GameLoop(player);
     }
 

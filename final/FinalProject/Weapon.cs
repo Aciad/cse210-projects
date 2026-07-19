@@ -10,8 +10,6 @@ abstract class Weapon : Item
     }
     public override void UseItem()
     {
-
-
         // Console.WriteLine($"{_map.GetWithinRange(_range, this)}");
         //BEING ALLOWED TO ATTACK YOURSELF IS A FEATURE NOT A BUG!!!
         List<GameObject> withinRange = _map.GetWithinRange(_range, _holder);
@@ -19,7 +17,7 @@ abstract class Weapon : Item
         {
             if (withinRange.OfType<Character>().Count() != 0)
             {
-                foreach (Character character in _map.GetWithinRange(_range, this).OfType<Character>())
+                foreach (Character character in _map.GetWithinRange(_range, _holder).OfType<Character>())
                 {
                     bool attacked = false;
                     Console.WriteLine($"Would you like to attack the {character.GetName()}?");

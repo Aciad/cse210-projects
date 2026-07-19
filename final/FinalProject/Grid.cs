@@ -92,9 +92,7 @@ class Grid
                 {
                     withinRange.AddRange(location);
                 }
-                
             }
-            Console.Write($"\n");
         }
         return withinRange;
     }

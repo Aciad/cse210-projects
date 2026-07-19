@@ -5,6 +5,7 @@ class Player : Character
         _token = "P";
         _name = "Player";
         _healthPoints = 20;
+        _description = "Despite everything it's still you";
     }
     //functionality
     public override void Planner(Turn turnKeeper)
