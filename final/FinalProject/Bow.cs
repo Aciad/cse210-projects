@@ -8,5 +8,6 @@ class Bow : Weapon
         _range = 5;
         _token = "}";
         _name = "Bow";
+        _description = "A bow to smite your enemies from afar";
     }
 }

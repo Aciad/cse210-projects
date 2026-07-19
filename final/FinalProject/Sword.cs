@@ -8,5 +8,6 @@ class Sword : Weapon
         _range = 1;
         _token = "/";
         _name = "Sword";
+        _description = "A sword with which to vanquish your enemies";
     }
 }

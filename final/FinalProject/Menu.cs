@@ -173,7 +173,7 @@ class Menu
                     List<GameObject> near = turnKeeper.getMap().GetWithinRange(1, player);
                     foreach (GameObject gameObject in near)
                     {
-                        Console.WriteLine($"Object: {gameObject}");
+                        Console.WriteLine($"{gameObject} - {gameObject.GetDescription()}");
                     }
                     Console.ReadLine();
                     inMenu = false;
