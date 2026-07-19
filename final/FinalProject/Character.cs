@@ -7,16 +7,67 @@ abstract class Character : GameObject
     //constructor
     public Character() : base()
     {
-        
     }
     //functionality
-    public virtual void Planner()
+    public void TakeDamage(int damage)
     {
-        
+        _healthPoints -= damage;
+        if (_healthPoints <= 0)
+        {
+            _map.RemoveObject(this);
+        }
     }
-    public virtual void Move()
+    public virtual void Planner(Turn turnKeeper)
     {
-        
+        // Console.Write("Planning");
+        // Console.ReadLine();
+    }
+    public virtual void Move(int rate, int[] direction)
+    {
+        int[] newCoordinates = _coordinates;
+        switch (direction)
+        {
+            case [0, 1]:
+                //up
+                newCoordinates[1] -= rate;
+                if (_map.GetIsInMapRange(newCoordinates))
+                {
+                    _coordinates = newCoordinates;
+                }
+                break;
+            case [0, -1]:
+                //down
+                newCoordinates[1] += rate;
+                if (_map.GetIsInMapRange(newCoordinates))
+                {
+                    _coordinates = newCoordinates;
+                }
+                break;
+            case [-1, 0]:
+                //left
+                newCoordinates[-0] -= rate;
+                if (_map.GetIsInMapRange(newCoordinates))
+                {
+                    _coordinates = newCoordinates;
+                }
+                break;
+            case [1, 0]:
+                //right
+                newCoordinates[0] += rate;
+                if (_map.GetIsInMapRange(newCoordinates))
+                {
+                    _coordinates = newCoordinates;
+                }
+                break;
+        }
+    }
+    public Item GetHeld()
+    {
+        return _held;
+    }
+    public int GetHealth()
+    {
+        return _healthPoints;
     }
     public virtual void Attack(Character target)
     {
@@ -24,6 +75,11 @@ abstract class Character : GameObject
     }
     public virtual void PickUp()
     {
-        
+        List<Item> local = _map.GetItemsAtCoords(_coordinates);
+        foreach (Item item in local)
+        {
+            _map.RemoveObject(item);
+        }
+        _inventory = local;
     }
 }

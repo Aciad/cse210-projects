@@ -1,17 +1,12 @@
 class Skeleton : Monster
 {
-    public Skeleton()
+    public Skeleton() : base()
     {
         _token = "S";
+        _name = "Skeleton";
+        _healthPoints = 5;
+        _range = 1;
+        _damage = 2;
         
-    }
-    //functionality
-    public override void Move()
-    {
-        base.Move();
-    }
-    public override void Attack(Character target)
-    {
-        base.Attack(target);
     }
 }

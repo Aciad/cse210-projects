@@ -3,9 +3,13 @@ class Turn
     private Map _map;
     private List<Character> _turnOrder;
     private int _turnCount;
-    public Turn(List<Character> turnOrder)
+    private bool _loop;
+    public Turn(Map map, bool loop = true)
     {
-        _turnOrder = turnOrder;
+        // _turnOrder = turnOrder;
+        _turnOrder = new List<Character>();
+        _loop = true;
+        _map = map;
     }
     public Turn(Map map)
     {
@@ -17,23 +21,51 @@ class Turn
         }
         _turnOrder = characters;
     }
-    public void GameLoop()
+    public Map getMap()
     {
-        bool inLoop = true;
-        while (inLoop)
+        return _map;
+    }
+    public void SetLoop(bool loop = true)
+    {
+        _loop = loop;
+    }
+    public void AddCharacter(Character character)
+    {
+        _turnOrder.Add(character);
+    }
+    public void GameLoop(Player player)
+    {
+        while (_loop)
         {
+            _turnCount ++;
             TakeTurn();
+            
             foreach (Character character in _turnOrder)
             {
-                if (character.GetType() != typeof(Player))
-                {
-                    character.Planner();
-                }
-                else
-                {
-
-                }
+                character.Planner(this);
             }
+            if (player.GetHealth() <= 0)
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("YOU DIED!");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.ReadLine();
+                _loop = false;
+            }
+            // Console.WriteLine("Type1 to exit");
+            // try
+            // {
+            //     int select = int.Parse(Console.ReadLine());
+            //     if (select == 1)
+            //     {
+            //         inLoop = false;
+            //     }   
+            // }
+            // catch
+            // {
+                
+            // }
         }
     }
     public void TakeTurn()
@@ -41,14 +73,12 @@ class Turn
         Console.Clear();
         _map.ViewportDisplay();
         Console.Write($"\n");
-        Console.ReadLine();
-        //debug nonsence
-        // foreach (GameObject content in _map.GetContent())
+        Console.WriteLine($"Turn Number: {_turnCount}");
+        // foreach (Character character in _turnOrder)
         // {
-        //     Console.WriteLine($"{content.GetName()}");
-        //     Console.WriteLine($"{content.GetToken()}");
-        //     Console.WriteLine($"{_map.GetObjectLocation(content)[0]}{_map.GetObjectLocation(content)[1]}");
+        //     Console.WriteLine($"Character : {character.GetName()}");
         // }
+        // Console.ReadLine();
     }
 
 }

@@ -5,6 +5,7 @@ abstract class GameObject
     protected string _description;
     protected int[] _coordinates;
     protected string _token;
+    protected Map _map;
 
     public string GetName()
     {
@@ -21,6 +22,14 @@ abstract class GameObject
     public string GetToken()
     {
         return _token;
+    }
+    public void SetCoordinates(int[] coordinates)
+    {
+        _coordinates = coordinates;
+    }
+    public void SetMap(Map map)
+    {
+        _map = map;
     }
     public int[] GetGameObjectDistance(GameObject target)
     {

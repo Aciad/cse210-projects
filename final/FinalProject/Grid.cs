@@ -12,10 +12,14 @@ class Grid
         _contents = new List<GameObject>();
         _contentsLocation = new Dictionary<GameObject, int[]>();
     }
-    public void AddContent(GameObject gameToken, int[] coordinates )
+    public void AddContent(GameObject gameToken, int[] coordinates, Map map)
     {
         _contents.Add(gameToken);
+        gameToken.SetCoordinates(coordinates);
         _contentsLocation.Add(gameToken, coordinates);
+        gameToken.SetMap(map);
+
+
     }
     public List<GameObject> GetContent()
     {
@@ -24,6 +28,33 @@ class Grid
     public int[] GetObjectLocation(GameObject GameObjectName)
     {
         return _contentsLocation[GameObjectName];
+    }
+    public int[] GetSize()
+    {
+        return [_width,_height];
+    }
+    public bool GetIsInMapRange(int[] coordinates)
+    {
+        if (coordinates[1] <= _height && coordinates[1] >= 0 && coordinates[0] <= _width && coordinates[0] >= 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool GetIsInRange(GameObject self, GameObject target, int range)
+    {
+        
+        if (target.GetCoordinates()[1] <= self.GetCoordinates()[1] + range && self.GetCoordinates()[0] - range >= 0 &&target.GetCoordinates()[0] <= self.GetCoordinates()[0] + range && self.GetCoordinates()[0] - range >= 0 )
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     public List<GameObject> GetGameObjectAtCoords(int[] coordinates)
     {
@@ -37,13 +68,48 @@ class Grid
         }
         return gameObjectList;
     }
+    public List<Item> GetItemsAtCoords(int[] coordinates)
+    {
+        List<Item> itemList = new List<Item>();
+        foreach (Item item in _contents.OfType<Item>())
+        {
+            if (_contentsLocation[item].SequenceEqual(coordinates))
+            {
+                itemList.Add(item);
+            }
+        }
+        return itemList;
+    }
+    public List<GameObject> GetWithinRange(int range, GameObject asker)
+    {
+        List<GameObject> withinRange = new();
+        for (int y = asker.GetCoordinates()[1] - range; y <= asker.GetCoordinates()[1] + range; y ++)
+        {
+            for (int x = asker.GetCoordinates()[0] - range; x <= asker.GetCoordinates()[0] + range; x ++)
+            {
+                List<GameObject> location = GetGameObjectAtCoords([x,y]);
+                if (location.Count() != 0)
+                {
+                    withinRange.AddRange(location);
+                }
+                
+            }
+            Console.Write($"\n");
+        }
+        return withinRange;
+    }
+    public void RemoveObject(GameObject gameObject)
+    {
+        _contents.Remove(gameObject);
+        _contentsLocation.Remove(gameObject);
+    }
     public void ViewportDisplay()
     {
         for (int y = 0; y <= _height; y ++)
         {
             for (int x = 0; x <= _width; x ++)
             {
-                List<GameObject> location = GetGameObjectAtCoords([y,x]);
+                List<GameObject> location = GetGameObjectAtCoords([x,y]);
                 if (location.Count() == 0)
                 {
                     Console.Write("-");
